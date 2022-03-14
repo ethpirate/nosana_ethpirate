@@ -1,0 +1,25 @@
+contrib: fix implicit function decleration in win symbol check (fanquake)
+
+Pull request description:
+
+  ```bash
+  test3.c: In function 'main':
+  test3.c:6:21: warning: implicit declaration of function 'CoFreeUnusedLibrariesEx' [-Wimplicit-function-declaration]
+      6 |                     CoFreeUnusedLibrariesEx(0,0);
+  ```
+
+  ```bash
+  bash-5.1# find guix-build-$(git rev-parse --short=12 HEAD)/output/ -type f -print0 | env LC_ALL=C sort -z | xargs -r0 sha256sum
+  1907745369f13b0b01583795e395b7e8ecda174a8a3b6309184b14609bfdcb20  guix-build-e4e9dd3a287f/output/dist-archive/bitcoin-e4e9dd3a287f.tar.gz
+  6973025bd46acdbc327118541f26d36885434305d20a7fa33e0db61f66f8b930  guix-build-e4e9dd3a287f/output/x86_64-w64-mingw32/SHA256SUMS.part
+  4cdc4efc0d27b3fcfb8f36244dfd956d19ae5df0414dcc23e733c88188f1f93a  guix-build-e4e9dd3a287f/output/x86_64-w64-mingw32/bitcoin-e4e9dd3a287f-win-unsigned.tar.gz
+  022e9743b13f5366cd0f4b52ff8350b42d8c6a506c98363071501a6c4ac735f1  guix-build-e4e9dd3a287f/output/x86_64-w64-mingw32/bitcoin-e4e9dd3a287f-win64-debug.zip
+  62e65f04fdcacb3d3fbcffbea5204f723f2b27a5f9a62a77abaf0b7ee7de3744  guix-build-e4e9dd3a287f/output/x86_64-w64-mingw32/bitcoin-e4e9dd3a287f-win64-setup-unsigned.exe
+  d773f5ba6afe456b7b5286f0cf98bcb711da8087b96a31f2e38f9c43af44fe96  guix-build-e4e9dd3a287f/output/x86_64-w64-mingw32/bitcoin-e4e9dd3a287f-win64.zip
+  ```
+
+ACKs for top commit:
+  laanwj:
+    Code review ACK e4e9dd3
+  hebasto:
+    ACK e4e9dd3, tested on Ubuntu 22.04.
